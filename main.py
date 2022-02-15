@@ -38,15 +38,16 @@ def _binary_search(mylist, key, left, right):
   index of key in mylist, or -1 if not present.
   """
   ### TODO
-  if (left >= right):
+  if (left <= right):
+    mid = (right+left)//2
+    if(mylist[mid] == key):
+      return mid
+    elif(mylist[mid] > key):
+      return _binary_search(mylist, key, left, mid-1)
+    else:
+      return _binary_search(mylist, key, mid+1, right)
+  else:
     return -1
-  mid = (right+left)//2
-  if(key == mylist[mid]):
-    return mid
-  elif(key < mylist[mid]):
-    _binary_search(mylist, key, left, mid-1)
-  elif(key > mylist[mid]):
-    _binary_search(mylist, key, mid+1 , right)
   ###
 
 def test_binary_search():
@@ -55,52 +56,61 @@ def test_binary_search():
   assert binary_search([1,2,3,4,5], 6) == -1
   ### TODO: add two more tests here.
   assert binary_search([1,2,3,4,5,6], 2) == 1
+  assert binary_search([1,11,22,69,85,90], 69) == 3
 
 
 	###
 
 
 def time_search(search_fn, mylist, key):
-	"""
-	Return the number of milliseconds to run this
-	search function on this list.
-
-	Note 1: `sort_fn` parameter is a function.
-	Note 2: time.time() returns the current time in seconds. 
-	You'll have to multiple by 1000 to get milliseconds.
-
-	Params:
-	  sort_fn.....the search function
-	  mylist......the list to search
-	  key.........the search key 
-
-	Returns:
-	  the number of milliseconds it takes to run this
-	  search function on this input.
-	"""
-	### TODO
-
-	###
+  """
+  Return the number of milliseconds to run this
+  search function on this list.
+  
+  Note 1: `sort_fn` parameter is a function.
+  Note 2: time.time() returns the current time in seconds. 
+  You'll have to multiple by 1000 to get milliseconds.
+  
+  Params:
+  sort_fn.....the search function
+  mylist......the list to search
+  key.........the search key 
+  
+  Returns:
+  the number of milliseconds it takes to run this
+  search function on this input.
+  """
+  ### TODO
+  start = time.time()*1000
+  search_fn(mylist, key)
+  end = time.time()*1000
+  return end-start
+  
 
 def compare_search(sizes=[1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]):
-	"""
-	Compare the running time of linear_search and binary_search
-	for input sizes as given. The key for each search should be
-	-1. The list to search for each size contains the numbers from 0 to n-1,
-	sorted in ascending order. 
-
-	You'll use the time_search function to time each call.
-
-	Returns:
-	  A list of tuples of the form
-	  (n, linear_search_time, binary_search_time)
-	  indicating the number of milliseconds it takes
-	  for each method to run on each value of n
-	"""
-	### TODO
-
-	###
-
+  """
+  Compare the running time of linear_search and binary_search
+  for input sizes as given. The key for each search should be
+  -1. The list to search for each size contains the numbers from 0 to n-1,
+  sorted in ascending order. 
+  
+  You'll use the time_search function to time each call.
+  
+  Returns:
+  A list of tuples of the form
+  (n, linear_search_time, binary_search_time)
+  indicating the number of milliseconds it takes
+  for each method to run on each value of n
+  """
+  ### TODO
+  results = list()
+  for i,v in enumerate(sizes):
+    n = v
+    linear_search_time = time_search(linear_search, list(range(0, n-1)), -1)
+    binary_search_time = time_search(binary_search, list(range(0, n-1)), -1)
+    results.append((n, linear_search_time, binary_search_time))
+  return results
+  
 def print_results(results):
 	""" done """
 	print(tabulate.tabulate(results,

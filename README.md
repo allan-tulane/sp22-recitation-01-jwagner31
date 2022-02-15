@@ -46,11 +46,16 @@ We'll compare the running times of `linear_search` and `binary_search` empirical
 
 - [ ] 3. Write at least two additional test cases in `test_binary_search` and confirm they pass.
 
-- [ ] 4. Describe the worst case input value of `key` for `linear_search`? for `binary_search`? 
+- [ ] 4. Describe the worst case input value of `key` for `linear_search`? for `binary_search`?
+- The worst case input value for key in linear_search is
+  when the key is at the last index in the list. This is because the algorithm has to course the entire list before reaching the final index that matches the key.
+- The worst case input value for key in binary_search is when the key is at either the beginnning or end of the list. Then, you will always have to recursively iterate the most amount of times.
 
 **TODO: your answer goes here**
 
-- [ ] 5. Describe the best case input value of `key` for `linear_search`? for `binary_search`? 
+- [ ] 5. Describe the best case input value of `key` for `linear_search`? for `binary_search`?
+- The best case input value of key in linear_search is when the key is the first element in the array. It will immediately be compared to the key and returned.
+- The best case input value for binary search is when the key value mathces the mid-value in the array. When the sum of the left and right index of the array divided by two is equal to the key value, that is the best case runtime.
 
 **TODO: your answer goes here**
 
