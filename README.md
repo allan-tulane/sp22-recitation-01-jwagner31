@@ -40,48 +40,48 @@ We'll compare the running times of `linear_search` and `binary_search` empirical
 
 `Binary Search`: Search a sorted array by repeatedly dividing the search interval in half. Begin with an interval covering the whole array. If the value of the search key is less than the item in the middle of the interval, narrow the interval to the lower half. Otherwise, narrow it to the upper half. Repeatedly check until the value is found or the interval is empty.
 
+
 - [ ] 1. In `main.py`, the implementation of `linear_search` is already complete. Your task is to implement `binary_search`. Implement a recursive solution using the helper function `_binary_search`. 
+
 
 - [ ] 2. Test that your function is correct by calling from the command-line `pytest main.py::test_binary_search`
 
+
 - [ ] 3. Write at least two additional test cases in `test_binary_search` and confirm they pass.
+
 
 - [ ] 4. Describe the worst case input value of `key` for `linear_search`? for `binary_search`?
 - The worst case input value for key in linear_search is
   when the key is at the last index in the list. This is because the algorithm has to course the entire list before reaching the final index that matches the key.
 - The worst case input value for key in binary_search is when the key is at either the beginnning or end of the list. Then, you will always have to recursively iterate the most amount of times.
 
-**TODO: your answer goes here**
 
 - [ ] 5. Describe the best case input value of `key` for `linear_search`? for `binary_search`?
 - The best case input value of key in linear_search is when the key is the first element in the array. It will immediately be compared to the key and returned.
 - The best case input value for binary search is when the key value mathces the mid-value in the array. When the sum of the left and right index of the array divided by two is equal to the key value, that is the best case runtime.
 
-**TODO: your answer goes here**
 
 - [ ] 6. Complete the `time_search` function to compute the running time of a search function. Note that this is an example of a "higher order" function, since one of its parameters is another function.
+
 
 - [ ] 7. Complete the `compare_search` function to compare the running times of linear search and binary search. Confirm the implementation by running `pytest main.py::test_compare_search`, which contains some simple checks.
 
 - [ ] 8. Call `print_results(compare_search())` and paste the results here:
 - |        n |   linear |   binary |
 |----------|----------|----------|
-|       10 |    0.003 |    0.003 |
-|      100 |    0.050 |    0.006 |
-|     1000 |    0.183 |    0.012 |
-|    10000 |    1.862 |    0.014 |
-|   100000 |   40.554 |    0.032 |
-|  1000000 |  392.393 |   70.728 |
-| 10000000 | 3822.924 |    0.045 |
-
-**TODO: add your timing results here**
+|       10 |    0.003 |    0.004 |
+|      100 |    0.016 |    0.005 |
+|     1000 |    0.188 |    0.015 |
+|    10000 |    2.072 |    0.016 |
+|   100000 |   19.205 |    0.025 |
+|  1000000 |  425.786 |    0.036 |
+| 10000000 | 4184.804 |    0.044 |
 
 - [ ] 9. The theoretical worst-case running time of linear search is $O(n)$ and binary search is $O(log_2(n))$. Do these theoretical running times match your empirical results? Why or why not?
-- 
-
-**TODO: your answer goes here**
+- For linear search, the theoretical running times closely match my empirical results. Since the run time is just O(n), you would expect each runtime to increase 10x as we increase n by 10e1 each time. After doing those calculations, I found the results to be very close to that, especially as I got to the larger input sizes where extra cost is less of a factor.
+- For binary search, the theoretical running times definitely resemble the empirical results, but they are not as close as a mach as linear search. The reason for this is that the binary search times are much faster than linear search, so it is hard to see as large of a difference between input sizes. Additionally, the extra cost plays a larger role in binary search as the runtimes are so small.
 
 - [ ] 10. Binary search assumes the input list is already sorted. Assume it takes $\Theta(n^2)$ time to sort a list of length $n$. Suppose you know ahead of time that you will search the same list $k$ times. 
-  + What is worst-case complexity of searching a list of $n$ elements $k$ times using linear search? **TODO: your answer goes here**
-  + For binary search? **TODO: your answer goes here**
-  + For what values of $k$ is it more efficient to first sort and then use binary search versus just using linear search without sorting? **TODO: your answer goes here**
+  + What is worst-case complexity of searching a list of $n$ elements $k$ times using linear search? The worst case would just be O(k*n).
+  + For binary search? The worst case would be O((k+n^2)*log_2(n)).
+  + For what values of $k$ is it more efficient to first sort and then use binary search versus just using linear search without sorting? If k is 1, then it is more efficent 

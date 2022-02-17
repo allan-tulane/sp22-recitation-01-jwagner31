@@ -126,5 +126,6 @@ def test_compare_search():
 	assert res[0][1] < 1
 	assert res[1][1] < 1
 
+#only works if vlaue is repeated, Professor couldn't figure it out, so that is reason. behind extra input.
 if __name__ == "__main__":
-  print_results(compare_search(sizes=[10, 100, 1000, 10000, 100000, 1000000, 10000000]))
+  print_results(compare_search(sizes=[10, 100, 1000, 10000, 100000, 100000, 1000000, 10000000]))
